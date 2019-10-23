@@ -33,7 +33,7 @@ class Board
   end
 
   def taken?(idx)
-    cells[idx.to_i-1]!=" "
+    cells[idx.to_i-1] =="X" || cells[idx.to_i-1] =="O"
   end
 
   def valid_move?(idx)

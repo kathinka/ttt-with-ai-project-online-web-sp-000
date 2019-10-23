@@ -43,40 +43,33 @@ class Game
   end
 
   def winner
-#binding.pry
     if win_combo = won?
       @winner = @board.cells[win_combo.first]
     end
   end
 
   def turn
-    if current_player == player_1
-      @player_1.move(board)
-    else
-      @player_2.move(board)
-    #end
+    idx = current_player.move(board)
       if board.valid_move?(idx)
-        binding.pry
-        board.update(idx, player)
+        board.update(idx, current_player)
         board.display
         else
         turn
-      end
     end
-end
+  end
 
+  def play
+    until  over?
+      turn
+    end
+      if winner
+        puts "Congratulations #{@winner}!"
+      else
+        puts "Cat's Game!"
+    end
+    
+  end
 
-#def turn
-  #  puts "Please enter 1-9:"
-  #  input = gets.strip
-  #  index = input_to_index(input)
-#    if valid_move?(index)
-#      move(index,current_player)
-#      display_board
-#    else
-#     turn
-#    end
-#  end
 
 
 end
