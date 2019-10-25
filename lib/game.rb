@@ -1,7 +1,7 @@
 require 'pry'
 
 class Game
-  attr_accessor :board, :player_1, :player_2, :cells, :human
+  attr_accessor :board, :player_1, :player_2, :cells#, :human
 
   WIN_COMBINATIONS = [
   [0,1,2],
@@ -59,7 +59,8 @@ class Game
   end
 
   def play
-    until  over?
+    #binding.pry
+    until over?
       turn
     end
       if winner
@@ -67,9 +68,58 @@ class Game
       else
         puts "Cat's Game!"
     end
-    
   end
 
+def manVsComputer(player_1=Players::Human.new("X"), player_2=Players::Computer.new("O"), board= Board.new)
+ @board = board
+ @player_1 = player_1
+ @player_2 = player_2
+end
 
+def computerVsMan(player_1=Players::Computer.new("X"), player_2=Players::Human.new("O"), board= Board.new)
+ @board = board
+ @player_1 = player_1
+ @player_2 = player_2
+end
 
+def computerVsComputer(player_1=Players::Computer.new("X"), player_2=Players::Computer.new("O"), board= Board.new)
+ @board = board
+ @player_1 = player_1
+ @player_2 = player_2
+end
+
+def call
+input = ""
+while input != 'exit'
+  puts "Welcome to a game of Tic-tac-toe!"
+  puts "To play a game against a friend enter '2'."
+  puts "To play a game against the computer enter '1'."
+  puts "To see the computer play against itself enter '0'."
+  input = gets.strip.downcase
+  case input
+    when '2'
+      Game.new(player_1=Players::Human.new("X"), player_2=Players::Human.new("O"), board= Board.new)
+      play
+      call
+    when '1'
+      puts "Who should go first and be 'X'?"
+      puts "To choose computer type '1'."
+      puts "To choose yourself type '2'."
+      input2 = gets.strip.downcase
+      if input2 =="1"
+      computerVsMan
+      play
+      call
+    elsif input2 =="2"
+      manVsComputer
+      play
+      call
+      end
+    when '0'
+      computerVsComputer
+      play
+      call
+    end
+  end
+end
 end
