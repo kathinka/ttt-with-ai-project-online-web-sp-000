@@ -100,26 +100,27 @@ while input != 'exit'
     when '2'
       Game.new(player_1=Players::Human.new("X"), player_2=Players::Human.new("O"), board= Board.new)
       play
-      call
+      #call
     when '1'
       puts "Who should go first and be 'X'?"
       puts "To choose computer type '1'."
       puts "To choose yourself type '2'."
       input2 = gets.strip.downcase
-      if input2 =="1"
-      computerVsMan
-      play
-      call
-    elsif input2 =="2"
-      manVsComputer
-      play
-      call
-      end
+        if input2 =="1"
+        computerVsMan
+        play
+        #call
+        elsif input2 =="2"
+        manVsComputer
+        play
+        #call
+        end
     when '0'
       computerVsComputer
       play
-      call
+      #call
     end
+    call
   end
 end
 end
