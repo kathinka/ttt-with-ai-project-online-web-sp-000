@@ -4,7 +4,7 @@ class Board
   attr_accessor :cells, :grid, :size
   attr_reader :token
 
-  def initialize 
+  def initialize
     reset!
     @size = 9
     @grid =('1'..size.to_s).to_a
