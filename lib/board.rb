@@ -1,11 +1,13 @@
 require "pry"
 
 class Board
-  attr_accessor :cells
+  attr_accessor :cells, :grid, :size
   attr_reader :token
 
-  def initialize
+  def initialize 
     reset!
+    @size = 9
+    @grid =('1'..size.to_s).to_a
   end
 
   def display
@@ -43,5 +45,24 @@ class Board
   def update(idx, player)
       cells[idx.to_i-1]=(player.token)
   end
+
+#new
+  def available_moves
+    grid.reject {|piece| piece == "X" || piece == "O"}
+  end
+
+  def get_piece_at (location)
+    grid[location -1]
+  end
+
+  def set_piece_at (location, piece)
+    grid[location -1] = piece
+  end
+
+  def reset_piece_at(location)
+    grid[location - 1] = location.to_s
+  end
+
+
 
 end
