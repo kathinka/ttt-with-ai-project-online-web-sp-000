@@ -27,7 +27,8 @@ class Board
   end
 
   def full?
-    cells.include?(" ") ? false : true
+    #cells.include?(" ") ? false : true
+    cells.all?{|char| char == 'X'|| char =='O'}
   end
 
   def turn_count
